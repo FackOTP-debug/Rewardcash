@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reward Play Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top Navigation & Balance Bar -->
+  <header class="app-header">
+    <div class="user-badge">
+      <span class="avatar-icon">👑</span>
+      <div class="user-info">
+        <span class="user-title">VIP Member</span>
+        <span class="user-streak" id="streakText">🔥 1 Day Streak</span>
+      </div>
+    </div>
+
+    <div class="balance-display" id="balanceCard">
+      <span class="coin-icon">🪙</span>
+      <div class="balance-details">
+        <span class="coin-count" id="headerCoinCount">500</span>
+        <span class="usd-equivalent" id="headerUsdValue">≈ $0.50</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ad Status Bar -->
+  <div class="ad-status-pill" id="adStatusPill">
+    <span class="status-dot ready" id="statusDot"></span>
+    <span class="status-text" id="statusText">AdMob: Ready (+Rewarded)</span>
+  </div>
+
+  <!-- Game Selector Tabs -->
+  <nav class="game-tabs">
+    <button class="tab-btn active" data-tab="wheel">
+      <span class="tab-icon">🎡</span>
+      <span class="tab-label">Wheel</span>
+    </button>
+    <button class="tab-btn" data-tab="scratch">
+      <span class="tab-icon">🎴</span>
+      <span class="tab-label">Scratch</span>
+    </button>
+    <button class="tab-btn" data-tab="chest">
+      <span class="tab-icon">🎁</span>
+      <span class="tab-label">Chest</span>
+    </button>
+    <button class="tab-btn" data-tab="miner">
+      <span class="tab-icon">⚡</span>
+      <span class="tab-label">Miner</span>
+    </button>
+  </nav>
+
+  <!-- TAB 1: LUCKY SPIN WHEEL -->
+  <section id="tab-wheel" class="game-section active">
+    <div class="card game-card">
+      <h2 class="game-title">Lucky Fortune Wheel</h2>
+      <p class="game-subtitle">Spin to win up to 1,000 Coins! Watch Ad for 2X Rewards.</p>
+
+      <div class="wheel-container">
+        <div class="wheel-pointer">▼</div>
+        <canvas id="wheelCanvas" width="300" height="300"></canvas>
+        <button id="wheelCenterBtn" class="wheel-center-btn">SPIN</button>
+      </div>
+
+      <div class="action-buttons">
+        <button id="spinFreeBtn" class="btn btn-primary">
+          <span>🎯 Spin Wheel (Free)</span>
+        </button>
+        <button id="spin2xAdBtn" class="btn btn-ad">
+          <span>🎬 Watch Ad for 2X Boost</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: SCRATCH CARD -->
+  <section id="tab-scratch" class="game-section">
+    <div class="card game-card">
+      <h2 class="game-title">Golden Scratch Card</h2>
+      <p class="game-subtitle">Scratch off 65% of the silver coat to reveal your prize!</p>
+
+      <div class="scratch-card-box">
+        <div class="scratch-underlay" id="scratchUnderlay">
+          <div class="prize-trophy">🏆</div>
+          <div class="prize-coins" id="scratchPrizeCoins">+250 COINS</div>
+          <div class="prize-status" id="scratchPrizeLabel">Lucky Mystery Match!</div>
+        </div>
+        <canvas id="scratchCanvas" width="280" height="180"></canvas>
+      </div>
+
+      <div class="scratch-progress-bar">
+        <div class="progress-fill" id="scratchProgressFill" style="width: 0%"></div>
+      </div>
+      <div class="scratch-percent" id="scratchPercent">Scratched: 0%</div>
+
+      <div class="action-buttons">
+        <button id="resetScratchBtn" class="btn btn-secondary">
+          <span>🔄 New Card</span>
+        </button>
+        <button id="doubleScratchAdBtn" class="btn btn-ad">
+          <span>🎬 Watch Ad for 3X Prize</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: MYSTERY CHESTS -->
+  <section id="tab-chest" class="game-section">
+    <div class="card game-card">
+      <h2 class="game-title">Golden Vault Chests</h2>
+      <p class="game-subtitle">Choose a vault. Unlock with a quick sponsored video for huge payouts!</p>
+
+      <div class="chests-row">
+        <div class="chest-box" data-chest="1">
+          <div class="chest-emoji">📦</div>
+          <span class="chest-name">Bronze Vault</span>
+          <span class="chest-reward">Up to 250</span>
+          <button class="btn btn-ad-mini unlock-chest-btn" data-chest="1">🎬 Open</button>
+        </div>
+        <div class="chest-box featured" data-chest="2">
+          <div class="featured-badge">HOT</div>
+          <div class="chest-emoji">🎁</div>
+          <span class="chest-name">Silver Vault</span>
+          <span class="chest-reward">Up to 500</span>
+          <button class="btn btn-ad-mini unlock-chest-btn" data-chest="2">🎬 Open</button>
+        </div>
+        <div class="chest-box" data-chest="3">
+          <div class="chest-emoji">👑</div>
+          <span class="chest-name">Gold Vault</span>
+          <span class="chest-reward">Up to 1,000</span>
+          <button class="btn btn-ad-mini unlock-chest-btn" data-chest="3">🎬 Open</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: TURBO MINER -->
+  <section id="tab-miner" class="game-section">
+    <div class="card game-card">
+      <h2 class="game-title">Turbo Coin Generator</h2>
+      <p class="game-subtitle">Tap the battery to generate energy. Boost with AdMob to harvest coins!</p>
+
+      <div class="miner-display">
+        <div class="battery-meter">
+          <div class="battery-fill" id="batteryFill" style="height: 20%"></div>
+          <div class="battery-nub"></div>
+        </div>
+        <div class="miner-stats">
+          <div class="stat-item">
+            <span class="stat-label">Stored Energy</span>
+            <span class="stat-val" id="energyPercent">20%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Pending Claim</span>
+            <span class="stat-val highlight" id="pendingCoins">+50 Coins</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="tapChargeBtn" class="btn btn-primary pulse-on-click">
+          <span>⚡ Tap to Charge</span>
+        </button>
+        <button id="superchargeAdBtn" class="btn btn-ad">
+          <span>🎬 Supercharge with Ad (+300 Coins)</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL / REWARD DIALOG -->
+  <div class="modal-overlay" id="rewardModal">
+    <div class="modal-content">
+      <div class="modal-confetti" id="confettiContainer"></div>
+      <div class="modal-icon">🎉</div>
+      <h3 class="modal-title" id="modalRewardTitle">Reward Unlocked!</h3>
+      <div class="modal-amount" id="modalRewardAmount">+100 COINS</div>
+      <p class="modal-desc" id="modalRewardDesc">AdMob reward verified and credited to your wallet balance.</p>
+      <button class="btn btn-primary modal-close-btn" id="modalCollectBtn">Collect & Continue</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

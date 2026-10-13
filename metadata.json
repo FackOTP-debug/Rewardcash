@@ -1,0 +1,6 @@
+{
+  "name": "RewardCash",
+  "description": "Earn rewards and cash with interactive games, task tracking, and AdMob rewarded ads via WebView bridge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

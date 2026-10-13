@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RewardCash</string>
+    <string name="nav_home">Earn</string>
+    <string name="nav_games">Game Hub</string>
+    <string name="nav_tasks">Tasks</string>
+    <string name="nav_wallet">Wallet</string>
+    <string name="nav_settings">Settings</string>
+</resources>
